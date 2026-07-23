@@ -1,8 +1,25 @@
 aid: accompany-health
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/accompany-health.png
 name: Accompany Health
-description: 'Accompany Health is a company surfaced as a portfolio company of ivp and added to the API
-  Evangelist network as a stub for enrichment. Sector: healthcare. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: 'Accompany Health is a value-based healthcare company that delivers integrated
+  in-home and virtual care to patients with complex, chronic conditions, primarily those
+  covered by Medicaid and Medicare. Its multidisciplinary care teams combine primary care,
+  behavioral health, and social care, wrapping medical treatment with support for the
+  social drivers of health. The company operates in Massachusetts, Michigan (Detroit),
+  and Colorado (Denver), works with health plans and providers, and is HIPAA compliant.
+  It was surfaced as a portfolio company of IVP and profiled in the API Evangelist network;
+  it publishes a marketing and patient-education website but no public developer/API surface.'
 url: https://raw.githubusercontent.com/api-evangelist/accompany-health/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -16,6 +33,14 @@ modified: '2026-07-17'
 tags:
 - Company
 - Healthcare
+- Primary Care
+- Home Health
+- Telehealth
+- Behavioral Health
+- Value-Based Care
+- Medicaid
+- Medicare
+- HIPAA
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -25,3 +50,18 @@ maintainers:
 common:
 - type: Website
   url: https://www.accompanyhealth.com
+- type: DomainSecurity
+  url: security/accompany-health-domain-security.yml
+- type: Blog
+  url: https://accompanyhealth.com/blog/
+- type: PrivacyPolicy
+  url: https://accompanyhealth.com/privacy-policy/
+- type: Support
+  url: https://accompanyhealth.com/contact-us/
+- type: Compliance
+  url: https://accompanyhealth.com/notice-of-privacy-practices/
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
