@@ -29,7 +29,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-08-15'
 tags:
 - Company
 - Healthcare
@@ -60,8 +60,60 @@ common:
   url: https://accompanyhealth.com/contact-us/
 - type: Compliance
   url: https://accompanyhealth.com/notice-of-privacy-practices/
+- type: BlogRSS
+  url: https://accompanyhealth.com/feed/
+- type: GitHubOrganization
+  url: https://github.com/Accompany-Health
+- type: LLMsTxt
+  url: llms/accompany-health-llms.txt
+- type: Conformance
+  url: conformance/accompany-health-conformance.yml
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-15'
+  status: minimal
+  artifacts_added: 5
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: >-
+    Full contract-discovery pass run against every host (apex, www, and the pay. and
+    whitepaper. subdomains found in certificate-transparency logs). The site sits
+    behind a Sucuri Cloudproxy WAF that answers unsolved requests with a 307
+    JavaScript challenge; the challenge was solved and every probe below ran against
+    the real origin. No OpenAPI, GraphQL, MCP, AsyncAPI or A2A agent card exists.
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    Accompany Health is a value-based care-delivery organization, not a software
+    vendor — its entire public surface is a 27-page WordPress marketing site whose
+    "For Providers" page routes referring clinicians to a web contact form rather than
+    to any partner API, and the only machine-readable HTTP surface on the domain is
+    the default WordPress core REST API at /wp-json/, which is CMS infrastructure
+    WordPress ships with every install and not an API this company designed,
+    documents or supports.
+  evidence:
+  - url: https://accompanyhealth.com/openapi.json
+    status: 404
+  - url: https://accompanyhealth.com/.well-known/agent-card.json
+    status: 404
+  - url: https://accompanyhealth.com/.well-known/security.txt
+    status: 404
+  - url: https://accompanyhealth.com/graphql
+    status: 404
+  - url: https://accompanyhealth.com/page-sitemap.xml
+    status: 200
+  - url: https://accompanyhealth.com/wp-json/
+    status: 200
+  - url: https://github.com/Accompany-Health
+    status: 200
+  checked: '2026-08-15'
+x-github-org-note: >-
+  github.com/Accompany-Health is registered to "Accompany Health" (location United
+  States, created 2022-05-17, actively pushed to as recently as 2026-08-06) and holds
+  6 public repositories, ALL of which are forks of third-party open source (nyaruka
+  phonenumbers, powersync-ja/powersync-service, openfga/openfga,
+  RJPearson94/terraform-provider-twilio, an AWS Spark data-lineage example, and a
+  Terraform SageMaker endpoint module). There is no first-party source code, no SDK
+  and no API specification published in the organization. Org membership is private,
+  so the link is asserted on the exact name match, the US location, the 2022 creation
+  date matching the company's founding, and a fork set consistent with an in-home care
+  operation (offline-first mobile sync, fine-grained authorization, telephony).
