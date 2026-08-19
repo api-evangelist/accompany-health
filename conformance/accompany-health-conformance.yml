@@ -1,0 +1,57 @@
+generated: '2026-08-15'
+method: searched
+source: https://accompanyhealth.com/notice-of-privacy-practices/
+note: >-
+  Accompany Health publishes no machine-readable API contract, so none of the
+  OpenAPI-derived standards checks in this pipeline (oauth2, oidc, rfc9457, json:api,
+  odata, scim, pagination, idempotency) can be evaluated — they are recorded as
+  unknown rather than false, because "no spec to read" is not the same finding as
+  "the spec does not conform". The one standards posture the company genuinely
+  publishes is its HIPAA status as a covered entity, stated in its own Notice of
+  Privacy Practices. No SOC 2, ISO 27001, HITRUST, PCI DSS or FedRAMP certification
+  is claimed anywhere on the public site, and no trust center exists.
+standards:
+- id: hipaa
+  conforms: true
+  evidence: >-
+    "Notice of Privacy Practices" names Accompany Medical Group, P.A. and the members
+    of its Affiliated Covered Entity, and states it describes how PHI is used and
+    disclosed for treatment, payment and health care operations under HIPAA.
+  source: https://accompanyhealth.com/notice-of-privacy-practices/
+- id: aca-section-1557
+  conforms: true
+  evidence: Published Section 1557 non-discrimination notice.
+  source: https://accompanyhealth.com/non-discrimination-notice/
+- id: fhir-r4
+  conforms: false
+  evidence: >-
+    No FHIR endpoint, no CapabilityStatement, no /metadata route, and no patient-access
+    API of any kind. The company is a care-delivery organization, not a payer or EHR
+    vendor, and is not subject to the CMS Interoperability and Patient Access final
+    rule (CMS-9115-F) patient-access API requirement.
+- id: hl7-v2
+  conforms: unknown
+  evidence: >-
+    Clinical data exchange with partner health plans and referring providers almost
+    certainly happens, but nothing about it is published publicly.
+- id: soc2
+  conforms: false
+  evidence: No SOC 2 attestation claimed on the public site; no trust center published.
+- id: iso-27001
+  conforms: false
+  evidence: No ISO 27001 certification claimed on the public site.
+- id: oauth2
+  conforms: unknown
+  evidence: No published API or OpenAPI securitySchemes to evaluate.
+- id: oidc
+  conforms: unknown
+  evidence: /.well-known/openid-configuration returns 404 on every host.
+- id: rfc9457-problem-details
+  conforms: unknown
+  evidence: No published API contract to evaluate.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on every host (probed 2026-08-15).
+- id: rfc8594-sunset-header
+  conforms: unknown
+  evidence: No published API, no versioning or deprecation policy.

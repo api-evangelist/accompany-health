@@ -1,12 +1,45 @@
-generated: '2026-07-17'
+generated: '2026-08-15'
 method: probed
-source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+source: live DNS/TLS/HTTP probes of apis.yml hosts + certificate-transparency subdomains
+note: >-
+  The automated probe recorded hsts:null for www.accompanyhealth.com because the
+  Sucuri Cloudproxy WAF in front of the site answers an unsolved request with a 307
+  JavaScript challenge. A hand-probe of the response headers on both the apex and the
+  www host shows HSTS is in fact served (max-age=31536000; includeSubdomains; preload),
+  and that value is recorded here. The two additional hosts were found in
+  certificate-transparency logs (crt.sh) rather than in apis.yml, since this company
+  publishes no API and therefore has no baseURL or servers[] hosts.
 hosts:
+- host: accompanyhealth.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 10 06:24:42 2026 GMT
+  cert_issuer: GoDaddy TLS Intermediate CA DV - R1v1
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  hsts_preload: true
+  waf: Sucuri/Cloudproxy
 - host: www.accompanyhealth.com
   https: true
   tls_version: TLSv1.3
   cert_expires: Oct 10 06:24:42 2026 GMT
-  hsts: null
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  hsts_preload: true
+  waf: Sucuri/Cloudproxy
+  note: redirects to the apex host
+- host: pay.accompanyhealth.com
+  https: true
+  hsts: false
+  note: >-
+    Third-party hosted payment link (GoDaddy/Poynt paylinks). Not operated by
+    Accompany Health and not an API surface.
+- host: whitepaper.accompanyhealth.com
+  https: true
+  hsts: false
+  note: Static marketing microsite hosting a downloadable white paper.
 domains:
 - domain: accompanyhealth.com
   dnssec: true

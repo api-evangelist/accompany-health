@@ -1,0 +1,21 @@
+generated: '2026-08-15'
+method: searched
+source: https://accompanyhealth.com/page-sitemap.xml
+limit_count: 0
+note: >-
+  HONEST ZERO. Accompany Health publishes no API, therefore no rate limits, no
+  throttling policy and no rate-limit response headers. There are no developer docs to
+  search: the full published page inventory (27 pages, read from the Yoast sitemap)
+  contains no developer, documentation, reference or API page, and every API-discovery
+  path probed on every host returned 404. No apis.yml RateLimits pointer is emitted,
+  since the underlying thing is not present.
+limits: []
+headers: []
+evidence:
+- url: https://accompanyhealth.com/page-sitemap.xml
+  status: 200
+  note: Complete published page list; no developer or API documentation page exists.
+- url: https://accompanyhealth.com/api
+  status: 404
+- url: https://accompanyhealth.com/docs
+  status: 404

@@ -1,0 +1,74 @@
+generated: '2026-08-15'
+method: probed
+source: live GET of the /.well-known/ discovery surface on every Accompany Health host
+note: >-
+  RECORDED ABSENCE, NOT A PRESENCE. Every /.well-known/ path probed on every
+  Accompany Health host returned a genuine HTTP 404 (a real 404 status carrying the
+  WordPress 404 template, not a soft-200 SPA shell). No WellKnown or SecurityTxt
+  pointer is wired into apis.yml as a result — this file documents that the surface
+  is not served, which is valid data and must not be scored as a served surface.
+  Hosts were taken from apis.yml (Website) plus the two additional subdomains found
+  in certificate-transparency logs; the company publishes no API, so there is no
+  baseURL or OpenAPI servers[] host to probe.
+hosts:
+- host: https://accompanyhealth.com
+  stack: WordPress behind Sucuri/Cloudproxy WAF
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://pay.accompanyhealth.com
+  stack: GoDaddy/Poynt hosted payment link (third party)
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://whitepaper.accompanyhealth.com
+  stack: Next.js static marketing microsite
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+adjacent_surfaces:
+- path: /robots.txt
+  status: 200
+  note: Yoast SEO block; "Disallow:" (nothing disallowed). Points at /sitemap_index.xml.
+- path: /sitemap.xml
+  status: 200
+  note: Yoast SEO sitemap index (post/page/category/author).
+- path: /feed/
+  status: 200
+  content_type: application/rss+xml
+  note: WordPress RSS 2.0 blog feed — the only machine-readable content feed published.
+- path: /wp-json/
+  status: 200
+  content_type: application/json
+  note: >-
+    Default WordPress core REST API index (220 routes across wp/v2, oembed/1.0,
+    yoast/v1, divi/v1, redirection/v1, wp-site-health/v1, wp-block-editor/v1,
+    wp-abilities/v1). This is CMS infrastructure shipped by WordPress itself, NOT an
+    API Accompany Health designed, documents, supports or offers to developers. It is
+    recorded here for completeness and deliberately NOT registered as an apis[] entry,
+    because doing so would credit the company with a developer API it never shipped.
+- path: /xmlrpc.php
+  status: 200
+  note: Default WordPress XML-RPC endpoint. CMS infrastructure, not a product API.

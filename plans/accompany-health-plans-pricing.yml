@@ -1,0 +1,23 @@
+generated: '2026-08-15'
+method: searched
+source: https://accompanyhealth.com/page-sitemap.xml
+plan_count: 0
+note: >-
+  HONEST ZERO. Accompany Health publishes no pricing page, no plans page and no API
+  product of any kind. The full published page inventory was read from the Yoast
+  sitemap (27 pages: home, about, careers, for-individuals, for-providers, blog,
+  contact, three market welcome pages, and the legal notices) and none of them is a
+  pricing or plans page. The company is paid by health plans under value-based
+  contracts rather than by end users or developers, so there is no consumer- or
+  developer-facing price list to capture. No apis.yml Plans pointer is emitted, since
+  the underlying thing is not present.
+plans: []
+evidence:
+- url: https://accompanyhealth.com/page-sitemap.xml
+  status: 200
+  note: Complete published page list; no /pricing or /plans page exists.
+- url: https://accompanyhealth.com/for-individuals/
+  status: 200
+  note: >-
+    Patient-facing services page. Describes the services offered but names no price,
+    fee, copay or plan tier anywhere on the page.
